@@ -1,0 +1,36 @@
+services:
+  # PHP Web App
+  - type: web
+    name: effafashion
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: effafashion-db
+          property: host
+      - key: DB_USER
+        fromDatabase:
+          name: effafashion-db
+          property: user
+      - key: DB_PASS
+        fromDatabase:
+          name: effafashion-db
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: effafashion-db
+          property: database
+      - key: SITE_URL
+        value: https://effafashion.onrender.com
+      - key: DB_PORT
+        fromDatabase:
+          name: effafashion-db
+          property: port
+
+databases:
+  # MySQL Database
+  - name: effafashion-db
+    databaseName: effafashion
+    plan: free
