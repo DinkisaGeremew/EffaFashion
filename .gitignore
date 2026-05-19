@@ -1,0 +1,28 @@
+# Uploaded files (don't commit user uploads)
+uploads/products/*
+uploads/avatars/*
+uploads/payments/*
+!uploads/products/.gitkeep
+!uploads/avatars/.gitkeep
+!uploads/payments/.gitkeep
+
+# Database temp files
+database/insert_products.sql
+database/fix_products.php
+
+# PHP error logs
+*.log
+error_log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Temp build files
+gen.py
+_build_assets.ps1
