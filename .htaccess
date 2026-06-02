@@ -1,35 +1,24 @@
 Options -Indexes
 RewriteEngine On
 
-# Force HTTPS on Render
-RewriteCond %{HTTP:X-Forwarded-Proto} =http
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
-# Remove trailing slashes
+# Remove .php extension from URLs (optional)
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)/$ /$1 [L,R=301]
-
-# Block access to sensitive files
-<FilesMatch "\.(sql|log|env|git|md|yaml|yml)$">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
-
-# Block access to config and includes directly
-RewriteRule ^config/ - [F,L]
-RewriteRule ^includes/ - [F,L]
-RewriteRule ^database/ - [F,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
 
 # Security headers
 <IfModule mod_headers.c>
-    Header always set X-Content-Type-Options "nosniff"
-    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options SAMEORIGIN
     Header always set X-XSS-Protection "1; mode=block"
 </IfModule>
 
-# PHP settings
-<IfModule mod_php.c>
-    php_value upload_max_filesize 10M
-    php_value post_max_size 10M
-    php_value max_execution_time 60
-</IfModule>
+# Protect sensitive files
+<FilesMatch "\.(sql|env|log|gitignore|yaml)$">
+    Require all denied
+</FilesMatch>
+
+# Protect config directory
+<DirectoryMatch "^(.*/)?config/">
+    Require all denied
+</DirectoryMatch>
