@@ -332,6 +332,7 @@ $wl_ids            = getWishlistIds();
 <!-- ═══════════════════════════════════════════════════════
      FEATURED PRODUCTS — 3D tilt cards
 ═══════════════════════════════════════════════════════ -->
+<?php if (!empty($featured_products)): ?>
 <section class="section">
     <div class="container">
         <div class="section-header reveal">
@@ -388,6 +389,7 @@ $wl_ids            = getWishlistIds();
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <!-- ═══════════════════════════════════════════════════════
      PARALLAX CTA BANNER
@@ -415,6 +417,7 @@ $wl_ids            = getWishlistIds();
 <!-- ═══════════════════════════════════════════════════════
      NEW ARRIVALS
 ═══════════════════════════════════════════════════════ -->
+<?php if (!empty($new_arrivals)): ?>
 <section class="section section-gray">
     <div class="container">
         <div class="section-header reveal">
@@ -457,6 +460,7 @@ $wl_ids            = getWishlistIds();
         </div>
     </div>
 </section>
+<?php endif; ?>
 
 <!-- ═══════════════════════════════════════════════════════
      TESTIMONIALS
