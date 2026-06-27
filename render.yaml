@@ -1,0 +1,41 @@
+services:
+  # ── Backend API ─────────────────────────────────────────
+  - type: web
+    name: effafashion-api
+    runtime: docker
+    rootDir: effafashion-server
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASS
+        sync: false
+      - key: DB_NAME
+        sync: false
+      - key: DB_SSL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+
+  # ── Frontend Static Site ─────────────────────────────────
+  - type: web
+    name: effafashion-frontend
+    runtime: static
+    rootDir: effafashion-client
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        sync: false
