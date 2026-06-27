@@ -1,4 +1,16 @@
-# Uploaded files (don't commit user uploads)
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Build output
+effafashion-client/dist/
+
+# Environment files
+.env
+**/.env
+!**/.env.example
+
+# Uploads (user content)
 uploads/products/*
 uploads/avatars/*
 uploads/payments/*
@@ -6,23 +18,10 @@ uploads/payments/*
 !uploads/avatars/.gitkeep
 !uploads/payments/.gitkeep
 
-# Database temp files
-database/insert_products.sql
-database/fix_products.php
-
-# PHP error logs
+# Logs
 *.log
-error_log
+npm-debug.log*
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
-desktop.ini
-
-# IDE
-.vscode/
-.idea/
-
-# Temp build files
-gen.py
-_build_assets.ps1

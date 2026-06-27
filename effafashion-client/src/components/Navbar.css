@@ -1,0 +1,71 @@
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212,175,55,0.15);
+  transition: all 0.3s ease;
+}
+.navbar.scrolled { background: rgba(0,0,0,0.97); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+
+.navbar-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 70px; gap: 20px;
+}
+
+.navbar-logo { font-family: 'Playfair Display', serif; font-size: 22px; letter-spacing: 2px; }
+.logo-effa    { color: #D4AF37; }
+.logo-fashion { color: #fff; font-weight: 400; }
+
+.navbar-links {
+  display: flex; list-style: none; gap: 28px;
+}
+.navbar-links a {
+  color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.5px; text-transform: uppercase; transition: color 0.2s;
+}
+.navbar-links a:hover { color: #D4AF37; }
+
+.navbar-actions { display: flex; align-items: center; gap: 12px; }
+
+.navbar-search {
+  display: flex; align-items: center;
+  background: rgba(255,255,255,0.08); border-radius: 20px;
+  padding: 6px 12px; gap: 8px;
+}
+.navbar-search input {
+  background: none; border: none; outline: none; color: #fff;
+  font-size: 13px; width: 140px;
+}
+.navbar-search input::placeholder { color: rgba(255,255,255,0.4); }
+.navbar-search button { background: none; border: none; color: rgba(255,255,255,0.6); font-size: 15px; }
+.navbar-search button:hover { color: #D4AF37; }
+
+.nav-icon-btn {
+  position: relative; width: 38px; height: 38px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.8); font-size: 18px;
+  transition: all 0.2s ease; background: rgba(255,255,255,0.05);
+  border: none;
+}
+.nav-icon-btn:hover { color: #D4AF37; background: rgba(212,175,55,0.1); }
+
+.nav-badge {
+  position: absolute; top: -4px; right: -4px;
+  background: #D4AF37; color: #000; font-size: 10px; font-weight: 700;
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.nav-user { display: flex; align-items: center; gap: 8px; }
+.menu-toggle { display: none; background: none; border: none; color: #fff; font-size: 22px; }
+
+@media (max-width: 900px) {
+  .navbar-links {
+    position: fixed; top: 70px; left: 0; right: 0;
+    background: #000; flex-direction: column; padding: 20px;
+    gap: 16px; transform: translateY(-100%); opacity: 0;
+    transition: all 0.3s ease; pointer-events: none;
+  }
+  .navbar-links.open { transform: translateY(0); opacity: 1; pointer-events: all; }
+  .navbar-search { display: none; }
+  .menu-toggle { display: block; }
+}
