@@ -1,29 +1,28 @@
+databases:
+  - name: effafashion-db
+    plan: free
+    databaseName: effafashion
+    user: effaadmin
+
 services:
-  # ── Backend API ─────────────────────────────────────────
+  # ── Backend API ──────────────────────────────────────────
   - type: web
     name: effafashion-api
     runtime: docker
     rootDir: effafashion-server
     dockerfilePath: ./Dockerfile
+    plan: free
     envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: effafashion-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        value: https://effafashion-frontend.onrender.com
       - key: PORT
         value: 5000
-      - key: DB_HOST
-        sync: false
-      - key: DB_PORT
-        sync: false
-      - key: DB_USER
-        sync: false
-      - key: DB_PASS
-        sync: false
-      - key: DB_NAME
-        sync: false
-      - key: DB_SSL
-        sync: false
-      - key: JWT_SECRET
-        sync: false
-      - key: CLIENT_URL
-        sync: false
 
   # ── Frontend Static Site ─────────────────────────────────
   - type: web
@@ -32,10 +31,11 @@ services:
     rootDir: effafashion-client
     buildCommand: npm install && npm run build
     staticPublishPath: dist
+    plan: free
     routes:
       - type: rewrite
         source: /*
         destination: /index.html
     envVars:
       - key: VITE_API_URL
-        sync: false
+        value: https://effafashion-api.onrender.com/api
