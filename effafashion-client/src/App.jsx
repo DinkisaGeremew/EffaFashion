@@ -15,6 +15,8 @@ import Wishlist      from './pages/Wishlist';
 import Login         from './pages/Login';
 import Register      from './pages/Register';
 import Profile       from './pages/Profile';
+import About         from './pages/About';
+import Contact       from './pages/Contact';
 
 import AdminLayout   from './pages/admin/AdminLayout';
 import Dashboard     from './pages/admin/Dashboard';
@@ -79,6 +81,8 @@ export default function App() {
           <Route path="/products/:slug"  element={<ProductDetail />} />
           <Route path="/cart"            element={<Cart />} />
           <Route path="/wishlist"        element={<Wishlist />} />
+          <Route path="/about"           element={<About />} />
+          <Route path="/contact"         element={<Contact />} />
 
           {/* Protected customer routes */}
           <Route element={<Protected />}>
